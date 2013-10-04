@@ -1,4 +1,6 @@
 *.swp
 *.aux
 *.log
+*.bbl
+*.blg
 .DS_Store
