@@ -109,6 +109,31 @@ on what we learned about battery usage for individual system calls. While this a
 be the most accurate, we believe it is the broadest approach that will allow us to profile any 
 application regardless of the author or the nature of the software's license.
 
+\section{Milestones}
+\uline{Milestone 1}\\
+To begin the project we want to: 
+\begin{itemize}
+  \item Compile small list of most used system calls by profiling a handful of popular android applications
+  \item Compile simple C programs (on linux/android) that runs the list most used system calls
+  \item Collect data on battery usage as a result of running the C programs on the device
+\end{itemize}
+
+\noindent
+\uline{Milestone 2}\\
+After we have collected data on system calls, we will:
+\begin{itemize}
+  \item Search for the most suitable tracing platform and trace system calls on various applications 
+  \item Identify and analyze the types of system calls and the number of each call initiated by individual applications
+\end{itemize}
+
+\noindent
+\uline{Milestone 3}\\
+With all this data in hand, the last step is to:
+\begin{itemize}
+  \item Organize the data collected
+  \item Attempt identification of patterns and relationships between system calls and battery usage by statistically analyzing the data
+  \item Use established relationships to predict battery usage of a novel application
+\end{itemize}
 
 \bibliographystyle{cs65f12}
 \bibliography{cs65f12}
