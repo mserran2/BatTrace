@@ -3,6 +3,7 @@
 \usepackage{times}
 \usepackage{latexsym}
 \usepackage{ulem}
+\usepackage{graphicx}
 \setlength\titlebox{6.5cm}    % Expanding the titlebox
 
 \title{BatTrace: Android battery performance testing via system call tracing}
@@ -92,6 +93,14 @@ immediately encounter when trying to analyze mobile software applications is tha
 \sout{almost} never have access to the source code of the applications. This is 
 especially true given the fact that most mobile software is proprietary in nature, 
 leaving open source software to the relics that are desktop computers.
+
+\begin{figure}[h]
+  \centerline{
+        \includegraphics[width=90mm]{images/environment_graphic.png}
+  }
+  \caption{The Android environment stack. Trace location marks where we will be intercepting system calls}
+  
+ \end{figure}
 
 With this in mind we set out find a way of measuring mobile battery usage at very low level
 (software wise). We decided a good approach would involve monitoring activity at the system 
