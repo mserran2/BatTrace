@@ -24,18 +24,18 @@ Craig Pentrack\\
   The increasing number of tasks we can perform on our mobile devices 
   feeds positively into the demand for devices with longer battery power. 
   Since mobile devices have become integral parts of our daily lives with
-  the number of task we can accomplish far outpacing battery performance 
+  the number of tasks we can accomplish far outpacing battery performance 
   improvements, consumers have increasingly encountered the issue of 
   efficient device usage and batter life management. In this paper, we 
   examine Android devices in particular and present BatTrace, an Android 
-  analysis platform that evaluates battery performance on the android platform
+  analysis tool that evaluates battery performance on the android platform
   by tracing system calls. BatTrace will execute different types of popular system
   calls, and extract the correlation between a particular system call and its 
   influence on the battery. Subsequently, it will trace system calls made by 
   individual Android applications and use system call performance data to profile
   each application. Finally, the analysis on the correlation between system calls and their 
   battery usage, as well as the correlation between each application and system 
-  calls they initiate, will be combined to produce the estimated battery performance 
+  calls they initiate, will be combined to estimate battery usage 
   of on individual Android applications.
 \end{abstract}
 
@@ -71,11 +71,11 @@ of eProf and other studies as justification, we plan to measure and classify sys
 calls on Android smartphones in terms of their effect on battery life.
 
 While eProf foregrounded system calls as an effective indicator of changes in power
-state, eProf used systems calls as means to profiling applications with regard to power 
+state, eProf used systems calls as a means toward profiling applications' power 
 consumption on a sub-routine level ~\cite{pathak-systemcall,pathak-eprof}.  Developing models based off of system 
 calls supplied a powerful tool, however the eProf research did not study battery drain 
 as a result of  particular system calls themselves and the frequency with which 
-applications rely on certain system calls.  Other work in the smartphone battery life 
+applications rely on certain system calls.  Other work in smartphone battery 
 research, including detecting energy-related bugs, correlating wireless signal strength 
 with battery consumption, and generating battery usage information on the process or 
 application level, has relied on system calls ~\cite{yoon-appscope,pathak-bugs,ding-signals}.  We plan to supplement the 
