@@ -1,0 +1,274 @@
+\documentclass[11pt]{article}
+\usepackage{cs65f12}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{ulem}
+\setlength\titlebox{6.5cm}    % Expanding the titlebox
+
+\title{BatTrace: Android battery performance testing via system call tracing}
+
+\author{Yeayeun Park\\
+  {\tt ypark2@swarthmore.edu}  
+  \And                           
+  Mark Serrano\\
+  {\tt mserran2@swarthmore.edu}
+  \And                            
+  Craig Pentrack\\                 
+  {\tt cpentra1@swarthmore.edu}}
+
+\date{10/04/13}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  The increasing number of tasks we can perform on our mobile devices 
+  feeds positively into the demand for devices with longer battery power. 
+  While the rate of increase in the usefulness of the devices is 
+  growing substantially faster than the rate of improvement in the battery 
+  performance that is achieved in the market, it has become a rising issue 
+  for mobile users how to use their devices efficiently and wisely, given 
+  the limitations. In this paper, we examine Android devices in particular, 
+  and present BatTrace, an Android analysis platform that evaluates Android 
+  battery performance by tracing system calls. BatTrace will execute 
+  different types of popular and important system calls, and extract the 
+  correlation between a particular system call and its influence on the 
+  battery. Subsequently, it will trace system calls made by individual Android 
+  applications, and the resulting data will be used to profile each application. 
+  Finally, the analysis on the correlation between system calls and their 
+  battery usage, and that on the correlation between each application and system 
+  calls they initiate will be combined to produce the estimated battery performance 
+  of the Android applications.
+\end{abstract}
+
+\section{Motivation}
+
+Our project is motivated by an issue that we face daily: limited battery power 
+of our mobile devices. The variety of tasks we can perform on our mobile
+devices is countered by the amount of battery that we're allowed to use. Given 
+that dynamic analysis executes data in real-time to evaluate and test programs, 
+we searched for tools that we could potentially perform dynamic analysis on our 
+mobile devices with, and uncover the low-level explanation for what really is 
+draining the battery. By profiling particular system calls in temrs of their battery
+usage, we're hoping to dervice a correlation between the two. Subsequently, with tools 
+such as 'strace' that suits our purpose, we plan to trace system calls made by third 
+party applications, and, in turn, provide a good set of guidelines for mobile users 
+to follow, when the low battery crisis comes.
+
+\section{Background}
+
+Historically much power consumption research has focused on using utilization-based
+methods.  However, modern smartphones employ complex power strategies in device 
+drivers and OS-level power management, sometimes rendering utilization as a poor 
+model for representing power states and deducing battery usage [1].  While 
+sometimes strong correlation exists between utilization and power consumption, often 
+applications have constant power consumption while in certain states (while 
+utilization fluctuates) or have high power consumption while low utilization [1], [2].  
+Additionally, measuring utilization via performance counters results in accuracy 
+loss [1].  Instead of modeling power with utilization, system calls, the only way of 
+interacting with hardware and performing I/O, serve as a much more precise indicator 
+of power consumption [1].  Past work and tools, such as eProf, have shown systems 
+calls to be an effective way of modeling power [1], [3], [4], [6].  Using the findings 
+of eProf and other studies as justification, we plan to measure and classify system 
+calls on Android smartphones in terms of their effect on battery life.
+
+While eProf foregrounded system calls as an effective indicator of changes in power
+state, eProf used systems calls as means to profiling applications with regard to power 
+consumption on a sub-routine level [1], [4].  Developing models based off of system 
+calls supplied a powerful tool, however the eProf research did not study battery drain 
+as a result of  particular system calls themselves and the frequency with which 
+applications rely on certain system calls.  Other work in the smartphone battery life 
+research, including detecting energy-related bugs, correlating wireless signal strength 
+with battery consumption, and generating battery usage information on the process or 
+application level, has relied on system calls. [3] [5] [6].  We plan to supplement the 
+research area by focusing our study on the system calls themselves, rather than using 
+them as a means in tracking changes in power state, detecting bugs, measuring signal 
+strength effects, or producing higher-level profilings as explored previously.
+
+
+\section{Our Idea}
+
+While dynamic analysis on traditional devices involves the most efficient use of finite 
+computing resources, mobile devices introduce a new problem; finite power. The issue we 
+immediately encounter when trying to analyze mobile software applications is that we 
+\sout{almost} never have access to the source code of the applications. This is 
+especially true given the fact that most mobile software is proprietary in nature, 
+leaving open source software to the relics that are desktop computers.
+
+With this in mind we set out find a way of measuring mobile battery usage at very low level
+(software wise). We decided a good approach would involve monitoring activity at the system 
+call level using a tool like strace. Ideally, we want to profile a variety of system calls 
+based on how much battery is used while they are running. We intend to establish a baseline 
+battery consumption level so we know how much battery is used by just the OS. Then, using 
+simple programs that repeatedly make the same system call X times, we can determine how much 
+battery was used as a result of initiating a particular system call X times.
+
+Once system calls have been profiled, we can proceed to the last phase of the analysis. Our 
+goal is to identify the system calls initiated by the Dalvik VM as a result of running an 
+individual app. By identifying the types of system calls, as well as the number of calls made 
+to an individual system call, we will be able to predict the app's impact on the battery based 
+on what we learned about battery usage for individual system calls. While this approach may not 
+be the most accurate, we believe it is the broadest approach that will allow us to profile any 
+application regardless of the author or the nature of the software's license.
+
+
+Manuscripts must be in two-column format.  Exceptions to the
+two-column format include the title, authors' names and complete
+addresses, which must be centered at the top of the first page, and
+any full-width figures or tables (see the guidelines in
+Subsection~\ref{ssec:first}). {\bf Type single-spaced.}  Start all
+pages directly under the top margin. See the guidelines later
+regarding formatting the first page.
+
+\subsection{Electronically-available resources}
+
+This description is provided in \LaTeX{} (\nobreak{cs65f12.tex}) along
+with the \LaTeX{} style file used to format it
+(\nobreak{cs65f12.sty}).  In addition, there is a bibliography style
+(\nobreak{cs65f12.bst}) and sample bibliography file
+(\nobreak{cs65f12.bib}).  These files are all in the {\tt cs65/labs/04-05/}
+directory.
+
+\subsection{Format of Electronic Manuscript}
+\label{sect:pdf}
+
+The easiest way to turn this \LaTeX{} into a PDF, is to use the
+Makefile found (also in {\tt cs65/labs/04-05/}).  The Makefile will
+compile your file (and your bibliography file) and turn it into a PDF.
+
+Here are the basic instructions:
+\begin{itemize}
+\item {\tt make} will create a PDF file from your \LaTeX{} document.
+\item {\tt make view} will display the PDF file. 
+\item {\tt make clean} will clean up some files you might not need
+\item {\tt make cleanall} will clean up all non-source files
+\end{itemize}
+
+For reasons of uniformity, Adobe's {\bf Times Roman} font should be
+used. In \LaTeX{} this is accomplished by putting
+
+\begin{quote}
+\begin{verbatim}
+\usepackage{times}
+\usepackage{latexsym}
+\end{verbatim}
+\end{quote}
+in the preamble, as was done in this file.
+
+Print-outs of the PDF file should look like the present document,
+which conforms to the formatting requirements. If you cannot meet the
+above requirements, please contact me as soon as possible.
+
+\subsection{Layout}
+\label{ssec:layout}
+
+Format manuscripts two columns to a page, in the manner these
+instructions are formatted. The exact dimensions for a page on US-letter
+paper are:
+
+\begin{itemize}
+\item Left and right margins: 1in
+\item Top margin:1in
+\item Bottom margin: 1in
+\item Column width: 3.15in
+\item Column height: 9in
+\item Gap between columns: 0.2in
+\end{itemize}
+
+Papers should not be submitted on any other paper size. 
+
+\subsection{The First Page}
+\label{ssec:first}
+
+Center the title, author's name(s) and affiliation(s) across both
+columns. Do not use footnotes for affiliations.  Use the two-column
+format only when you begin the abstract.
+
+{\bf Title}: Place the title centered at the top of the first page, in
+a 15-point bold font. A long title should be typed on two lines
+without a blank line intervening. Approximately, put the title at 1in
+from the top of the page, followed by a blank line, then the author's
+names(s), and the affiliation on the following line.  Do not use only
+initials for given names (middle initials are allowed). The
+affiliation should contain the author's complete address, and an email
+address. Leave about 0.75in between the affiliation and the body of
+the first page.
+
+{\bf Abstract}: Type the abstract at the beginning of the first
+column.  The width of the abstract text should be smaller than the
+width of the columns for the text in the body of the paper by about
+0.25in on each side.  Center the word {\bf Abstract} in a 12 point
+bold font above the body of the abstract. The abstract should be a
+concise summary of the general thesis and conclusions of the paper.
+It should be no longer than 200 words.
+
+{\bf Text}: Begin typing the main body of the text immediately after
+the abstract, observing the two-column format as shown in 
+the present document.
+
+{\bf Indent} when starting a new paragraph. For reasons of uniformity,
+use Adobe's {\bf Times Roman} fonts, with 11 points for text and 
+subsection headings, 12 points for section headings and 15 points for
+the title. If Times Roman is unavailable, use {\bf Computer Modern
+  Roman} (\LaTeX{}'s default; see section \ref{sect:pdf} above).
+Note that the latter is about 10\% less dense than Adobe's Times Roman
+font.
+
+\subsection{Sections}
+
+{\bf Headings}: Type and label section and subsection headings in the
+style shown on the present document.  Use numbered sections (Arabic
+numerals) in order to facilitate cross references. Number subsections
+with the section number and the subsection number separated by a dot,
+in Arabic numerals. Do not number subsubsections.
+
+{\bf Citations}: Citations within the text appear in parentheses
+as~\cite{harris1955-phoneme} or, if the author's name appears in the
+text itself, as Harris~\shortcite{harris1955-phoneme}.  Append
+lowercase letters to the year in cases of ambiguities.  Treat double
+authors as in~\cite{hafer1974-word}, but write as
+in~\cite{hana2006-tagging} when more than two authors are involved.
+Collapse multiple citations as
+in~\cite{harris1967-morpheme,dejean1998-morphemes}.
+
+\textbf{References}: Gather the full set of references together under
+the heading {\bf References}; place the section before any Appendices,
+unless they contain references. Arrange the references alphabetically
+by first author, rather than by order of occurrence in the text.
+Provide as complete a citation as possible, using a consistent format.
+
+The \LaTeX{} and Bib\TeX{} style files provided roughly fit the
+American Psychological Association format, allowing regular citations, 
+short citations and multiple citations as described above.
+
+{\bf Appendices}: Appendices, if any, directly follow the text and the
+references (but see above).  Letter them in sequence and provide an
+informative title: {\bf Appendix A. Title of Appendix}.
+
+\textbf{Acknowledgement} sections should go as a last section immediately
+before the references.  Do not number the acknowledgement section.
+
+\subsection{Footnotes}
+
+{\bf Footnotes}: Put footnotes at the bottom of the page. They may
+be numbered or referred to by asterisks or other
+symbols.\footnote{This is how a footnote should appear.} Footnotes
+should be separated from the text by a line.\footnote{Note the
+line separating the footnotes from the text.}
+
+\subsection{Graphics}
+
+{\bf Illustrations}: Place figures, tables, and photographs in the
+paper near where they are first discussed, rather than at the end, if
+possible.  Wide illustrations may run across both columns. Do not use
+color illustrations as they may reproduce poorly.
+
+{\bf Captions}: Provide a caption for every illustration; number each one
+sequentially in the form:  ``Figure 1. Caption of the Figure.'' ``Table 1.
+Caption of the Table.''  Type the captions of the figures and 
+tables below the body, using 11 point text.  
+
+
+\bibliographystyle{cs65f12}
+\bibliography{cs65f12}
+
+\end{document}
