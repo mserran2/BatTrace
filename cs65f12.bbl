@@ -1,0 +1,52 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Ding \bgroup et al.\egroup }2013]{ding-signals}
+Ning Ding, Daniel Wagner, Xiaomeng Chen, Abhinav Pathak, Y.~Charlie Hu, and
+  Andrew Rice.
+\newblock 2013.
+\newblock Characterizing and modeling the impact of wireless signal strength on
+  smartphone battery drain.
+\newblock In {\em SIGMETRICS '13 Proceedings of the ACM
+  SIGMETRICS/international conference on Measurement and modeling of computer
+  systems}.
+
+\bibitem[\protect\citename{Google}2013]{google-androiddev}
+Inc. Google.
+\newblock 2013.
+\newblock Power profiles for android.
+\newblock {\em Developer Guides}.
+
+\bibitem[\protect\citename{Pathak \bgroup et al.\egroup
+  }2011]{pathak-systemcall}
+Abhinav Pathak, Paramvir Bahl, Y.~Charlie Hu, Ming Zhang, and Yi-Min Wang.
+\newblock 2011.
+\newblock Fine-grained power modeling for smartphones using system call
+  tracing.
+\newblock In {\em EuroSys '11 Proceedings of the sixth conference on Computer
+  systems}.
+
+\bibitem[\protect\citename{Pathak \bgroup et al.\egroup }2012]{pathak-bugs}
+Abinav Pathak, Abhilash Jindal, Y.~Charlie Hu, and Samuel~P. Midkiff.
+\newblock 2012.
+\newblock What is keeping my phone awake? characterizing and detecting no-sleep
+  energy bugs in smartphone apps.
+\newblock In {\em MobiSys '12 Proceedings of the 10th international conference
+  on Mobile systems, applications, and services}.
+
+\bibitem[\protect\citename{Pathtak \bgroup et al.\egroup }2012]{pathak-eprof}
+Abhinav Pathtak, Y.~Charlie Hu, and Ming Zhang.
+\newblock 2012.
+\newblock Where is the energy spent inside my app?: fine grained energy
+  accounting on smartphones with eprof.
+\newblock In {\em EuroSys '12 Proceedings of the 7th ACM european conference on
+  Computer Systems}.
+
+\bibitem[\protect\citename{Yoon \bgroup et al.\egroup }2012]{yoon-appscope}
+Chanmin Yoon, Dongwon Kim, Wonwoo Jung, Chulkoo Kang, and Hojung Cha.
+\newblock 2012.
+\newblock Appscope: Application energy metering framework for android
+  smartphones using kernel activity monitoring.
+\newblock In {\em USENIX ATC'12 Proceedings of the 2012 USENIX conference on
+  Annual Technical Conference}.
+
+\end{thebibliography}
