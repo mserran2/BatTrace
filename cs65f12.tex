@@ -23,13 +23,12 @@
 \begin{abstract}
   The increasing number of tasks we can perform on our mobile devices 
   feeds positively into the demand for devices with longer battery power. 
-  While the rate of increase in the usefulness of the devices is 
-  growing substantially faster than the rate of improvement in the battery 
-  performance that is achieved in the market, it has become a rising issue 
-  for mobile users how to use their devices efficiently and wisely, given 
-  the limitations. In this paper, we examine Android devices in particular, 
-  and present BatTrace, an Android analysis platform that evaluates Android 
-  battery performance by tracing system calls. BatTrace will execute 
+  Since mobile devices have become integral parts of our daily lives with
+  the number of task we can accomplish far outpacing battery performance 
+  improvements, consumers have increasingly encountered the issue of 
+  efficient device usage and batter life management. In this paper, we 
+  examine Android devices in particular and present BatTrace, an Android 
+  analysis platform that evaluates battery performance on the android by tracing system calls. BatTrace will execute 
   different types of popular and important system calls, and extract the 
   correlation between a particular system call and its influence on the 
   battery. Subsequently, it will trace system calls made by individual Android 
@@ -43,16 +42,16 @@
 \section{Motivation}
 
 Our project is motivated by an issue that we face daily: limited battery power 
-of our mobile devices. The variety of tasks we can perform on our mobile
-devices is countered by the amount of battery that we're allowed to use. Given 
+on our mobile devices. The vast power available at our fingertips in mobile
+devices is tamed by the amount of battery physically available. Given 
 that dynamic analysis executes data in real-time to evaluate and test programs, 
-we searched for tools that we could potentially perform dynamic analysis on our 
-mobile devices with, and uncover the low-level explanation for what really is 
-draining the battery. By profiling particular system calls in temrs of their battery
-usage, we're hoping to dervice a correlation between the two. Subsequently, with tools 
-such as 'strace' that suits our purpose, we plan to trace system calls made by third 
-party applications, and, in turn, provide a good set of guidelines for mobile users 
-to follow, when the low battery crisis comes.
+we searched for tools that would allow us to perform dynamic analysis on our 
+mobile devices while uncovering low-level explanations as to what is really 
+draining the battery. By profiling particular system calls in terms of their battery
+usage, we're hoping to derive a correlation between the two. Subsequently, with the
+appropriate tools (such as 'strace') we plan to trace system calls made by third 
+party applications and, in turn, provide a good set of guidelines for mobile users 
+to follow, when the low battery crisis hits.
 
 \section{Background}
 
