@@ -27,7 +27,7 @@ Craig Pentrack\\
   Since mobile devices have become integral parts of our daily lives with
   the number of tasks we can accomplish far outpacing battery performance 
   improvements, consumers have increasingly encountered the issue of 
-  efficient device usage and batter life management. In this paper, we 
+  efficient device usage and battery life management. In this paper, we 
   examine Android devices in particular and present BatTrace, an Android 
   analysis tool that evaluates battery performance on the android platform
   by tracing system calls. BatTrace will execute different types of popular system
@@ -37,7 +37,7 @@ Craig Pentrack\\
   each application. Finally, the analysis on the correlation between system calls and their 
   battery usage, as well as the correlation between each application and system 
   calls they initiate, will be combined to estimate battery usage 
-  of on individual Android applications.
+  of individual Android applications.
 \end{abstract}
 
 \section{Motivation}
@@ -66,13 +66,13 @@ utilization fluctuates) or have high power consumption while low utilization ~\c
 Additionally, measuring utilization via performance counters results in accuracy 
 loss ~\cite{pathak-systemcall}.  Instead of modeling power with utilization, system calls, the only way of 
 interacting with hardware and performing I/O, serve as a much more precise indicator 
-of power consumption ~\cite{pathak-systemcall}.  Past work and tools, such as eProf, have shown systems 
+of power consumption ~\cite{pathak-systemcall}.  Past work and tools, such as eProf, have shown system 
 calls to be an effective way of modeling power ~\cite{pathak-systemcall,yoon-appscope,pathak-eprof,ding-signals}.  Using the findings 
 of eProf and other studies as justification, we plan to measure and classify system 
 calls on Android smartphones in terms of their effect on battery life.
 
 While eProf foregrounded system calls as an effective indicator of changes in power
-state, eProf used systems calls as a means toward profiling applications' power 
+state, eProf used system calls as a means toward profiling applications' power 
 consumption on a sub-routine level ~\cite{pathak-systemcall,pathak-eprof}.  Developing models based off of system 
 calls supplied a powerful tool, however the eProf research did not study battery drain 
 as a result of  particular system calls themselves and the frequency with which 
@@ -122,8 +122,8 @@ application regardless of the author or the nature of the software's license.
 \uline{Milestone 1}\\
 To begin the project we want to: 
 \begin{itemize}
-  \item Compile small list of most used system calls by profiling a handful of popular android applications
-  \item Compile simple C programs (on linux/android) that runs the list most used system calls
+  \item Compile a small list of most used system calls by profiling a handful of popular android applications
+  \item Compile simple C programs (on linux/android) that run the list most used system calls
   \item Collect data on battery usage as a result of running the C programs on the device
 \end{itemize}
 
