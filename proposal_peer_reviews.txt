@@ -1,0 +1,47 @@
+I chose to rank this above 06 due to the impact I imagined this could have. A static
+profiling tool that uses dynamically collected data such as this would be very useful
+for app developers that want to quickly check what algorithms/patterns use the least 
+amount of battery.
+I ranked these guys lower than 01 because I'm wondering two things 1) whether this
+information already exists/could be easily guessed without empirical research and 2) 
+the effect that their instrumentation will have on battery life (i.e. how much they'll
+affect battery life via their own sys calls)
+----------------------------
+I think the topic of team 11's paper, the relationship between types of instructions and battery performance, is interesting and very relevant to today's world.I believe the references to outside sources help successfully convinnce your reader of your claims. 
+
+It would be helpful to give some more information or insight into what methods you will use to explore the relationship between the number of calls and battery usage. How will you derive the relationship between the two?  Will you just use some kind of approximating equation? How will battery usage be measured over time or per instruction, or what methods will you use to track this? I see how tools like strace can show you exactly what calls were made to monitor the system, but the battery tracking seems a little less technical to me. Overall good paper, and cool topic. Fleshing out the above ideas could further convince your reader of the likelyhood of succes for your project. In my opinion fleshing out some of the detail could be helpful, however I do understadn that the project is in its early stages.
+
+----------------------------
+Team 11 - BatTrace: Android battery performance testing via system call tracking by Yeayeun Park, Mark Serrano, and Craig Pentrack.
+
+The authors seem to have very clear understanding of the material and clear idea of what they are going to do. The authors did good job of narrowing down their topic to a very specific area and thus formed a very well defined target audience - anyone who uses or involved in the production of Android, from users, developers to manufacturers of hardware devices. A specific group of people will benefit from this research. Battery life of is an issue that users of mobile devices face on a daily basis, thus both the consumers, developers, and manufacturers will benefit from the project.The authors are well aware of what they can do and what they cannot do, and set out a practical and realistic game plan. The likelihood of success seems high. One possible improvement may be identifying how finding out the correlation between system call and battery usage will actually provide a solution for optimal use of system calls. I am not sure whether you can manipualte which system calls an application uses can be easily manipulated at the application development level. 
+
+
+----------------------------
+    I ranked this team's proposal first out of the three proposals assigned.  I ranked this proposal the highest because I really like their idea.  I like the fact they are using dynamic analysis to accomplish something very useful.  Furthermore, I appreciate that the authors gear their motivation toward the general user, i.e. an individual that has no experience with computer programming.  The second aspect that made this proposal better than the other two is that the authors have a well-developed plan of how to determine battery usage of an application.  Furthermore, the authors have done a significant amount of research on previous work in order to devise their strategy.
+    As to the areas of improvement for this proposal, I had one concern.  The authors really do not go into too much depth of a basic outline of their system.  It would have been nice if the authors gave an initial sketch of how the authors will correlate battery use and system calls on an Android device using their tracing program.  I feel that measuring battery usage based on a single call may be difficult if there are no previous projects to build upon.
+
+
+----------------------------
+I think this proposal is fantastic. I ranked it above every other proposal because 1) I find the motivaion very compelling (lots of people use mobile phones, which are running out of battery all the time), 2) there is a very clear plan of action with convincing feasability, and 3) the authors clearly did their background research. My only comment would be to make the proposal a little clearer on why previous research hasn't done what this proposal plans to do. 
+
+----------------------------
+This idea is very exciting, and can inform many developers for Android. I think it has a lot of promise as an inventive idea that is definitely applicable. I think this group has a solid project that is different enough from previous research to be valuable and novel, but there is enough previous researcht hat they can use this to their advantage with such a short-term project. 
+
+----------------------------
+I think the proposal was very clear in its explanation overall and also in defining the problem and goal for the project. It is well organized. It is also nicely linked with the previous research and how they might go about differentiating their project. It is also obvious how it might be helpful.
+
+Although nicely written in general, I think it will help to reduce the parts where the ideas get to redundant and go into specific details in some parts to narrow down the project. For example, even if the range of apps is not decided yet, it is hard to imagine how the observation might go about 'individual' apps. Are you going to categorize these apps according to user-frequency? By their purpose? Style of information? If so, how would you generalize the outcome of each app so that it may be useful for a potential user? So thinking about being more specific in choice of 'popular' apps and the impact would be helpful. 
+
+----------------------------
+Team 11 Project Proposal Review
+
+I ranked this team ahead of the next team because their research was throrough and the project is well-defined. I like the experimentally driven nature of their project, and that is will leverage those results in dynamic analysis. Their paper was very well done, with a nice figure illustrating the system architecture they are targeting.
+
+My only concerns are the milestones and some hardware dependencies they might not be considering. First, they leave the dynamic analysis or runtime tool implementation for the last milestone. I think they might need to start work on this earlier since it could be complicated. Second, their experimental data should take into consideration that each device running their app might have different hardware that performs differently for different system calls. This means that ehy should ideally automate the testing and have it done as an initialization step in their tool for each device, though that might be hoping for too much in this semester.
+
+----------------------------
+        BatTrace was my favorite proposal out of the ones I was given. It is original, useful, and exists at a comfortable challenge level. I am confident that the authors will finish on time. The idea makes sense as an extension to the research they cited on utilization and power consumption--sure, programs that use more processor time use up more batteries, but do system calls use up _more_ batteries? That is the question the authors ask.
+        One potential application that the project has that the authors didn't mention is that it can be used to perform cross-platform analysis. Do Android system calls use more power relative to iPhone system calls? Or do applications on one platform tend to call certain types of system calls more than than on the other? All in all, very good. I put my cash on these cows.
+
+----------------------------
