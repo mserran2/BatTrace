@@ -66,9 +66,8 @@ Craig Pentrack\\
 \section{Introduction}
 Our project is motivated by an issue that we face daily: limited battery power 
 on our mobile devices. The vast power available at our fingertips in mobile
-devices is tamed by the amount of battery physically available. Given 
-that dynamic analysis executes data in real-time to evaluate and test programs, 
-we utilized \textit{strace} in combination with C programs and Android system data to perform 
+devices is tamed by the amount of battery physically available. Wanting to track application behavior 
+and the resultant energy usage, we used \textit{strace} in combination with C programs and Android system data to perform 
 dynamic analysis on Android devices, uncovering low-level explanations as to what is really 
 draining the battery.
 
@@ -79,8 +78,10 @@ statistics on which system calls were used and how often.  In the process of tra
 built in Android system data pre and post traces.  
 
 Once aware of the most used system calls, we created C programs to repeatedly run those calls and
-collect battery statistics.  These programs gave us a measure of how much battery each system call 
-consumes on average.  From the aggregate trace data and average system call consumption data, we were 
+collect battery statistics.  It is important to note that in future versions of BatTrace we will need to collect
+statistics on all system calls, as the most frequent calls may not drain the most power.  However, starting with the 
+most frequent system calls and the C programs repeatedly ran, we acquired an avetage measure of how much battery each system call 
+consumes.  From the aggregate trace data and average system call consumption data, we were 
 able to make predictions on battery usage of 3rd party applications.  In collecting high level 
 data on battery consumption, we hope to better inform Android users which applications drain their 
 battery level most, providing a good set of guidelines for mobile users to follow when low battery 
@@ -96,12 +97,18 @@ model for representing power states and deducing battery usage ~\cite{pathak-sys
 sometimes strong correlation exists between utilization and power consumption, often 
 applications have constant power consumption while in certain states (while 
 utilization fluctuates) or have high power consumption while low utilization ~\cite{pathak-systemcall,google-androiddev}.  
+Merely focusing on CPU and other component-specific 
+utilization levels do not capture tail-power states and the more intricate workings of power management.
 Additionally, measuring utilization via performance counters results in accuracy 
-loss ~\cite{pathak-systemcall}.  Instead of modeling power with utilization, system calls, the only way of 
+loss ~\cite{pathak-systemcall}.  
+
+Instead of modeling power with utilization, system calls, the only way of 
 interacting with hardware and performing I/O, serve as a much more precise indicator 
-of power consumption ~\cite{pathak-systemcall}.  Past work and tools, such as eProf, have shown system 
-calls to be an effective way of modeling power ~\cite{pathak-systemcall,yoon-appscope,pathak-eprof,ding-signals}.  Using the findings 
-of eProf and other studies as justification, we measured and classified system 
+of power consumption ~\cite{pathak-systemcall}.  System calls, an indispensible aspect of mobile applications, 
+provide accessible insight in how an application is using the underlying hardware.  Past work and tools, most 
+notably eProf, show correlating application behavior with power usage (via system calls and power readings) has 
+been more successful than utilization-based approaches ~\cite{pathak-systemcall,yoon-appscope,pathak-eprof,ding-signals}.  
+Using the findings of eProf and other studies as justification, we measured and classified system 
 calls on Android smartphones in terms of their effect on battery life.
 
 While eProf foregrounded system calls as an effective indicator of changes in power
@@ -136,19 +143,21 @@ leaving open source software to the relics that are desktop computers.
 
 With this in mind we set out find a way of measuring mobile battery usage at very low level
 (software wise). We decided a good approach would involve monitoring activity at the system 
-call level using a tool like \textit{strace}. Ideally, we want to profile a variety of system calls 
-based on how much battery is used while they are running. We intend to establish a baseline 
+call level using \textit{strace}. We wanted to profile a variety of system calls 
+based on how much battery is used while they are running. We intended to establish a baseline 
 battery consumption level so we know how much battery is used by just the OS. Then, using 
-simple programs that repeatedly make the same system call X times, we can determine how much 
-battery was used as a result of initiating a particular system call X times.
+simple programs that repeatedly make the same system call many times, as a single call is often
+immeasurable, we can determine how much battery was used as a result of initiating a particular system call.  
 
 Once system calls were profiled, we proceeded to the last phase of the analysis. Our 
 goal was to identify the system calls initiated by the Dalvik VM as a result of running an 
 individual app. By identifying the types of system calls, as well as the number of calls made 
-to an individual system call, we were able to predict the app's impact on the battery based 
+to an individual system call, we were able to predict applications' impact on the battery based 
 on what we learned about battery usage for individual system calls. While this approach may not 
-be the most accurate, we believe it is the broadest approach that will allow us to profile any 
-application regardless of the author or the nature of the software's license.
+be the most accurate, we believe it is an approach that will allow us to profile any 
+application regardless of the author or the nature of the software's license.  Another possible method
+to explore could be instrumenting low-level code as system calls execute, much in the fashion of popular
+tools like Valgrind and Pin.
 
 \section{Evaluation}
 
