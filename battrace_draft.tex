@@ -312,12 +312,11 @@ In the future, we would like to improve upon these errors, making our experiment
 Despite the success of system call tracking on the mobile device, it is clear system calls alone do not provide an absolute measure of power consumption.  Though
 we discuss some of the possible reasons why the predictions of our model were so far off, it is unlikely that these reasons are solely responsible for the
 differences between the predicted values and the actual battery readings.  During our testing, it became apparent to us that additional power drain was
-occurring as a result of higher level processes that did not interact directly with the underlying OS.  We suspect the Dalvik VM and the Java code being
-executed on contributed to the power drain observed.  However, while system calls do not reliable provide an absolute measure, they proved to be useful in
+occurring as a result of higher level processes that do not interact directly with the underlying OS.  We suspect the Dalvik VM (and the Java code running on it) contributed to the power drain observed.  However, while system calls do not reliably provide an absolute measure, they proved to be useful in
 calculating a relative measure of power efficiency across applications.  By running a variety of apps for a set amount of time, we were able to measure
 power consumption via the system calls they triggered and, in turn, use the power consumption data to compare the applications to each other.  A tool such as
 the one proposed in this paper could one day be part of the off-line development suites of software writers across the globe as the focus on energy efficiency shifts
-from hardware to software.  However, this tool could also prove useful as an online in the hands of the consumer as consumers become more aware of power hungry applications and their effects on battery life.  While we were unable to develop a solid measure of battery drain using the proposed model, the approach still shows promise and our work provides a solid foundation on which to develop additional research.
+from hardware to software.  However, this tool could also prove useful as an online tool in the hands of the consumer as consumers become more aware of power hungry applications and their effects on battery life.  While we were unable to develop a solid measure of battery drain using the proposed model, the approach still shows promise and our work provides a solid foundation on which to develop additional research.
 
 \bibliographystyle{cs65f12}
 \bibliography{cs65f12}
