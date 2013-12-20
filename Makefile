@@ -1,5 +1,5 @@
 # latex source file name
-TARGET=cs65f12
+TARGET=battrace_draft
 
 SRC=$(wildcard *.tex) 
 

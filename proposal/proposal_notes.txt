@@ -1,0 +1,59 @@
+BATRACE BACKGROUND PROPOSAL NOTES
+Craig Pentrack, Mark Serrano, YY Park
+10/23/13
+
+Introduction talk..
+- introduce each team member
+- name of project
+- structure of presentation
+	- I'm going to provide background information on the research area
+	- After I give some background Mark is going give a high level description of our idea conceptually and technically
+	- YY will present the foreseen obstacles and milestone goals
+
+
+
+BACKGROUND
+In browsing the ACM library and existing research we've come across one paper in particular that parallels our methodology in studying and predicting battery drain on smartphones. We feel serves as a proof of concept for our project.  
+
+Before giving a high level description of the paper's contributions and other papers in the research area, it is helpful to understand historical approaches and intuitions about the best ways to measure power and battery usage.  I want to start by talking about some of the successes so far and then dividing into the findings more specific to our project
+
+
+WHERE PROGRESS HAS BEEN MADE elsewhere:
+-> making a kernel module
+-> looking at the effect of wireless signal strength
+-> detecting energy bugs
+
+WHERE PROGRESS HAS BEEN MADE specifically using system calls:
+-> analyzing power on a subroutine level
+
+
+
+Ok, cell phones….
+-> made of a bunch of components, where power usage isn't so directly tied to the CPU.  Thus, it is important to consider each of the components.
+
+So if we think about how much power a particular component is using, intuitively it may make sense to get readings on how much that component is being utilized.  Smartphone and PC research have measured this in the past using a training phase and then linear regression to model power usage.  If we were to model this out for a smartphone it would look something like this:
+
+WIFI NIC
+- graph of throughput on x-axis and power usage on y axis.
+-> "in principle the power states of each component should simply correspond to the throughput of the work done"
+	- > wifi network interface controller transferring at 5 mbps vs. 11 mbps should be using more 	power
+
+CPU 
+- graph of utilization on x-axis power usage on y axis
+
+One could aggregate this data for
+-> memory, cellular, bluetooth, camera, accelerometer, compass, LCD, touch sensors, microphone, speakers etc.
+
+However this is not always the case and what so authors call the utilization-power-state correlation assumption:
+
+reasons why this assumption is misleading:
+	-> system calls that do not imply utilization can change power states
+	-> some components do not have quantitative utilization (GPS/Camera) 
+	-> changes in signal state
+	-> tail power states
+
+Therefore utilization-based power modeling is problematic…
+
+Thus, for modeling battery drain on smartphones with complex mechanisms for power optimization a different approach could be better suited. A group of researchers from Purdue and Microsoft collaborated to show that for fine-grained power modeling, system call tracing is a good starting place.  
+
+In particular they showed that using system calls as transitions in power states (modeled in a FSM) is much more effective at measuring/predicting total power usage than utilization-based models.  The graphed results of error between the two methods made the system call method the clear model with better accuracy.  
