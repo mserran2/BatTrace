@@ -53,7 +53,7 @@ Craig Pentrack\\
   improvements, consumers have increasingly encountered the issue of 
   efficient device usage and battery life management. In this paper, we 
   examine Android devices in particular and present BatTrace, an Android 
-  analysis tool that evaluates battery performance on the android platform
+  analysis tool that evaluates battery performance on the Android platform
   by tracing system calls. BatTrace will execute different types of popular system
   calls, and extract the correlation between a particular system call and its 
   influence on the battery. Subsequently, it will trace system calls made by 
@@ -76,12 +76,12 @@ Hypothesizing system calls to be the key to understanding battery usage at a low
 used \textit{strace} to profile applications system call usage.  Such testing gave us aggregate
 statistics on which system calls were used and how often.  In the process of tracing popular
 3rd party applications (e.g. Facebook, Gmail, etc.), we also recorded battery usage by utilizing
-built in Android system data pre and post traces.  
+built in Android system data before and after traces.  
 
 Once aware of the most used system calls, we created C programs to repeatedly run those calls and
 collect battery statistics.  It is important to note that in future versions of BatTrace we will need to collect
 statistics on all system calls, as the most frequent calls may not drain the most power.  However, starting with the 
-most frequent system calls and the C programs repeatedly ran, we acquired an avetage measure of how much battery each system call 
+most frequent system calls and the respective C programs, we acquired an average measure of how much battery each system call 
 consumes.  From the aggregate trace data and average system call consumption data, we were 
 able to make predictions on battery usage of 3rd party applications.  In collecting high level 
 data on battery consumption, we hope to better inform Android users which applications drain their 
@@ -99,7 +99,7 @@ sometimes strong correlation exists between utilization and power consumption, o
 applications have constant power consumption while in certain states (while 
 utilization fluctuates) or have high power consumption while low utilization ~\cite{pathak-systemcall,google-androiddev}.  
 Merely focusing on CPU and other component-specific 
-utilization levels do not capture tail-power states and the more intricate workings of power management.
+utilization levels does not capture tail-power states and the more intricate workings of power management.
 Additionally, measuring utilization via performance counters results in accuracy 
 loss ~\cite{pathak-systemcall}.  
 
@@ -112,8 +112,8 @@ been more successful than utilization-based approaches ~\cite{pathak-systemcall,
 Using the findings of eProf and other studies as justification, we measured and classified system 
 calls on Android smartphones in terms of their effect on battery life.
 
-While eProf foregrounded system calls as an effective indicator of changes in power
-state, eProf used system calls as a means toward profiling applications' power 
+While eProf used system calls as an effective indicator of changes in power
+state, eProf did so as a means toward profiling applications' power 
 consumption on a sub-routine level ~\cite{pathak-systemcall,pathak-eprof}.  Developing models based off of system 
 calls supplied a powerful tool, however the eProf research did not study battery drain 
 as a result of  particular system calls themselves and the frequency with which 
@@ -181,7 +181,7 @@ run for at least 2 minutes simulating normal usage patters.  More detailed infor
 patterns appears in the Appendix with the system call frequency results appearing in the Table 4.1.1.
 
 We found there were 14 most frequent, unique system calls among the applications tested.  Some of the 
-systems calls in the 14 did not make the top ten as often (and munmap never), however these calls if 
+system calls in the 14 did not make the top ten as often (and munmap never), however these calls if 
 not in the top ten often fell just outside it, so we decided to include them.  With this list, we knew 
 some significant system calls to recreate in order to gather battery usage data.  A complete test 
 should include all of the systems calls run, however we focused on the most frequent calls in 
@@ -223,7 +223,7 @@ us a significant change in battery. After running the script for each program, w
 consumption per system call for each of the 14 unique most frequent.  See results in Table 4.2.1.
 
 \begin{tabular}{l c}
-   System Call & \# Battery Consumption \\
+   System Call & \# Battery Change \\
    \hline
    clock\_gettime & 0.006425 \\
    ioctl & 0.011998 \\
@@ -242,7 +242,7 @@ consumption per system call for each of the 14 unique most frequent.  See result
    munmap &  0.006474\\              
 \end{tabular}
 \newline
-{\fontsize{11}{13}\selectfont Table 4.2.1 Battery Consumption of System Calls. For readability consumption is displayed
+{\fontsize{11}{13}\selectfont Table 4.2.1 Battery Consumption Averages for System Calls. For readability change in battery is displayed
 per every 1,000,000 calls.}
 \newline
 
@@ -265,7 +265,7 @@ Facebook, Youtube, and Pandora.  Observed consumption data can be found in Table
 \subsection{Predictions}
 
 With prediction data (which systems calls are made by certain applications with their frequencies) and average consumption per
-call for the 14 system calls we focused on, predicting battery usage was a matter of summing the estimated consumption for each 
+call for the 14 system calls we focused on, estimating battery usage was a matter of summing the estimated consumption for each 
 system call.  We predicted each system call's power usage by multiplying the number of times it was called by our estimated 
 usage for that particular call.  As we did not consider parameters at this stage in our research, the estimated battery usage for a 
 call was the same for each call within an application and across applications.  We admit such oversimplication.  Once taking this sum, we added a baseline reading of how much power is used by tracing an almost completely idle application (we used weather clock) to simulate power used by the system, enabling accurate comparison to the traced 3rd party applications. 
