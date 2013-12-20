@@ -327,7 +327,15 @@ so that it can be used as a useful guide for battery-conscious smartphone users.
 
 \section{Conclusions}
 
-CONCLUSION... Waiting on completion of Table 4.2.1 to complete this section.
+Despite the success of system call tracking on the mobile device, it is clear system calls do not provide an absolute measure of power consumption.  Though
+we discuss some of the possible reasons why the predictions of our model were so far off, it is unlikely that these reasons are solely responsible for the
+differences between the predicted values and the actual battery readings.  During our testing, it became apparent to us that additional power drain was
+occurring as a result of higher level processes that did not interact directly with the underlying OS.  We suspect the Dalvik VM and the Java code being
+executed on contributed to the power drain observed.  However, while system calls do not reliable provide an absolute measure, they proved to be useful in
+calculating a relative measure of power efficiency across applications.  By running a variety of apps for a set amount of time, we were able to measure
+power consumption via the system calls they triggered and, in turn, use the power consumption data to compare the application to each other.  While we were
+unable to develop a solid measure of battery drain using the proposed model, the approach still shows promise and our work provides a solid foundation on which
+to continue research in this field.
 
 \bibliographystyle{cs65f12}
 \bibliography{cs65f12}
