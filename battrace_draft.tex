@@ -303,13 +303,26 @@ between predicted consumption and observed consumpted can be seen below in Table
 Waiting on completion of Table 4.2.1 to complete this section. 
 
 \subsection{Analysis of Error \& Future Work}
-Once we have Table 4.2.1 we can perform analysis of our error and outline future work.  Anticipating that the discussion will
-include:
+Our project turned out to have had inherent flaws in the experimental design that naturally led to errors--the difference between the predicted 
+values and the actual readings, as can be witnessed from the Figure 4.2.1. We have come down to three main issues that we would like to discuss 
+in this section:
+
 \begin{itemize}
-  \item didn't factor in varying system call parameters
-  \item only captured 14 most used system calls for each application
-  \item only tested on one device
-  \item battery levels were imprecise (x/100)
+  \item Lack of system call parameters: Parameters are passed to system calls in the same way that they are passed to other functions. 
+  These parameters contain important information that guides a system call’s behavior. Same system calls with different parameters are essentially 
+  carrying out different tasks. In the C programs that we wrote, we ran system calls that passed generic parameters that do not necessarily match 
+  those that were actually called in the test applications. In other words, it is possible that a system call with a particular set of parameters 
+  drain more battery than the same system call with another set of parameters. Thus, it is likely that errors might have occurred from this difference. 
+  \item Insufficient data collection: Our predictions are calculations of data from 14 most frequent system calls instead of all the system calls 
+  that were called from the applications. This design rules out the possibility of less frequent system calls that are more power hungry. If these 
+  system calls were present, the power usage data we managed to collect from the top 14 system calls were not fully indicative of the actual power usage. 
+  \item Design of our C programs: We designed our C programs so that each runs a single system call repeatedly in a for loop for a set number of iterations. 
+  Though this was a clever manipulation of the knowledge we were given, we concluded that it might not have been the best design. For instance, when `getpid’ 
+  is called the first time, the value returned from calling the system call is put into the cache. Thus, for the rest of the iterations, power usage is 
+  significantly diminished, and does not accurately represent the actual power usage. 
+
+In the future, we would like to improve upon these errors, making our experimental design more accurate and complete. Furthermore, we hope to expand our project, 
+so that it can be used as a useful guide for battery-conscious smartphone users. 
 \end{itemize}
 
 \section{Conclusions}
